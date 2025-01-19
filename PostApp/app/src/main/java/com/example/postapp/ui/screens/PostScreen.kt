@@ -1,4 +1,4 @@
-package com.example.apppost1.ui.screens
+package com.example.postapp.ui.screens
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.AlertDialog
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material3.Button
@@ -23,13 +24,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.apppost1.viewmodel.PostViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.apppost1.data.models.Post
-import com.example.postapp.data.model.Post
-import com.example.postapp.ui.screens.PostItem
 import com.example.postapp.viewmodel.PostViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.apppost.ui.screens.PostItem
+import com.example.postapp.data.model.Post
+import com.example.postapp.ui.theme.Pink40
+
 
 
 @Composable
@@ -79,6 +81,7 @@ fun PostScreen(viewModel: PostViewModel = viewModel()) {
                 title = ""
                 content = ""
             },
+            colors = androidx.compose.material3.ButtonDefaults.buttonColors(containerColor = Pink40),
             modifier = Modifier.fillMaxWidth()
 
         ) {
@@ -144,10 +147,7 @@ fun PostScreen(viewModel: PostViewModel = viewModel()) {
                         Text(text = "Cancelar")
                     }
                 }
-
             )
         }
-
-
     }
 }
