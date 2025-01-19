@@ -71,7 +71,7 @@ class PostViewModel: ViewModel() {
         }
     }
 
-    fun detelePost(postId: Int){
+    fun deletePost(postId: Int){
         viewModelScope.launch {
             try {
                 RetrofitInstance.api.deletePost(postId)

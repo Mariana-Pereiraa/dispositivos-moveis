@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.example.postapp.data.model.Post
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import com.example.postapp.ui.theme.Pink40
 
 @Composable
 fun PostItem(
@@ -38,6 +39,7 @@ fun PostItem(
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = post.title, style = MaterialTheme.typography.body1)
+
             Spacer(modifier = Modifier.height(8.dp))
 
             Row {
@@ -50,8 +52,8 @@ fun PostItem(
                 }
 
                 Button(
-                    onClick = {onEdit},
-                    colors = ButtonDefaults.buttonColors(MaterialTheme.colors.error),
+                    onClick = {onEdit(post)},
+                    colors = ButtonDefaults.buttonColors(Pink40),
                     modifier = Modifier.padding(8.dp)
                 ) {
                     Text(text = "Editar")
@@ -83,3 +85,4 @@ fun PostItem(
         }
     }
 }
+

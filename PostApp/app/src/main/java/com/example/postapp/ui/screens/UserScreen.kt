@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import com.example.postapp.ui.theme.Pink40
 import com.example.postapp.viewmodel.PostViewModel
 
 @Composable
@@ -72,6 +73,7 @@ fun UserScreen(viewModel: PostViewModel = viewModel()) {
             name = ""
             email = ""
         },
+            colors = androidx.compose.material.ButtonDefaults.buttonColors(backgroundColor = Pink40),
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(text = "Criar usuário")
