@@ -9,7 +9,7 @@ import com.example.msnapp.model.Message
 
 @Dao
 interface MessageDao {
-    @Query("SELECT * FROM messages ORDER BY timesTamp DESC")
+    @Query("SELECT * FROM messages ORDER BY timesTamp ASC")
             fun getAllMessages(): Flow<List<Message>>
 
             @Insert
