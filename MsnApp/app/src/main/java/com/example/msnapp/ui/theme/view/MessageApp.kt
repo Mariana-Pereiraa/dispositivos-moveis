@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
@@ -37,6 +38,8 @@ import androidx.compose.ui.unit.dp
 import com.example.msnapp.ui.viewmodel.MessageViewModel
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.foundation.shape.CircleShape
+
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -98,7 +101,7 @@ fun MessageApp(viewModel: MessageViewModel) {
                     modifier = Modifier
                         .weight(1f)
                         .background(
-                            MaterialTheme.colorScheme.surface,
+                            MaterialTheme.colorScheme.background,
                             RoundedCornerShape(20.dp)
                         )
                         .border(
@@ -143,7 +146,8 @@ fun MessageBubble(content: String, isUserMessage: Boolean) {
         Box(
             modifier = Modifier.background(
                 color = if (isUserMessage) MaterialTheme.colorScheme.primary
-                else MaterialTheme.colorScheme.surface
+                else MaterialTheme.colorScheme.surface,
+                shape = RoundedCornerShape(20.dp)
             )
                 .padding(12.dp)
                 .widthIn(max = 250.dp)
