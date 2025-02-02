@@ -15,8 +15,6 @@ import com.example.investidorapp.MainActivity
 import com.example.investidorapp.model.Investimento
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import com.google.firebase.database.*
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -43,10 +41,8 @@ class InvestimentosViewModel(application: Application) : AndroidViewModel(applic
                 val valor = snapshot.child("valor").getValue(Int::class.java) ?: 0
                 Log.d("FirebaseData", "Investimento atualizado: $nome - R$ $valor")
 
-                // Enviar notificação local
                 enviarNotificacao("Investimento Atualizado", "$nome agora vale R$ $valor")
 
-                // Atualizar os dados
                 carregarInvestimentos()
             }
 
@@ -86,7 +82,6 @@ class InvestimentosViewModel(application: Application) : AndroidViewModel(applic
         val channelId = "investimentos_notifications"
         val notificationId = (System.currentTimeMillis() % 10000).toInt()
 
-        // Criação do canal de notificação (necessário para Android 8.0+)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 channelId,

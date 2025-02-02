@@ -17,29 +17,23 @@ import android.Manifest
 
 class FirebaseMessagingService : FirebaseMessagingService() {
 
-    // Metodo chamado quando o dispositivo recebe uma mensagem do Firebase
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
 
-        // Exibe a notificação somente se a mensagem tiver título e corpo
         remoteMessage.notification?.let {
             showNotification(it.title, it.body)
         }
     }
 
-    // Metodo chamado quando um novo token é gerado para o dispositivo
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        // Aqui você pode enviar o token para o backend, se necessário
         println("Token do dispositivo: $token")
     }
 
-    // Exibe a notificação no dispositivo
     private fun showNotification(title: String?, message: String?) {
         val channelId = "investidor_notifications"
         val notificationId = (System.currentTimeMillis() % 10000).toInt()
 
-        // Criação do canal de notificação (necessário no Android 8.0+)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 channelId,
