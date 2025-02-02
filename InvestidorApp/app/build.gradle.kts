@@ -61,7 +61,7 @@ dependencies {
     implementation("com.google.firebase:firebase-messaging:23.2.1")
 
     // Jetpack Compose
-    implementation(platform("androidx.compose:compose-bom:2023.09.01"))
+    implementation(platform("androidx.compose:compose-bom:2024.04.01"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.ui:ui-tooling-preview")
