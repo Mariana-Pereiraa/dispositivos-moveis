@@ -11,37 +11,37 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.authapp.data.AuthRepository
 import com.example.authapp.ui.theme.AuthAppTheme
+import com.example.authapp.ui.view.ForgotPasswordScreen
+import com.example.authapp.ui.view.HomeScreen
+import com.example.authapp.ui.view.LoginScreen
+import com.example.authapp.ui.view.RegisterScreen
+import com.example.authapp.viewmodel.AuthViewModel
+import com.example.authapp.viewmodel.AuthViewModelFactory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        val repository = AuthRepository()
+        val authViewModel = ViewModelProvider(this, AuthViewModelFactory(repository)).get(
+            AuthViewModel::class.java)
+
         setContent {
-            AuthAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+            val navController: NavHostController = rememberNavController()
+
+            NavHost(navController = navController, startDestination = "login") {
+                composable("login") { LoginScreen(authViewModel, navController) }
+                composable("register") { RegisterScreen(authViewModel, navController) }
+                composable("forgotPassword") { ForgotPasswordScreen(authViewModel, navController) }
+                composable("home") { HomeScreen(authViewModel, navController) }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    AuthAppTheme {
-        Greeting("Android")
     }
 }
